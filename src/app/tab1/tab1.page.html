@@ -1,17 +1,35 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="container">
+  <ion-card class="contentCard">
+    <div class="header">
+      <h4>Current weather</h4>
+      <p>{{ currentHour | date:'HH:mm'}}</p>
+    </div>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <div class="containeWeather" *ngIf="objWeather">
+      <div class="infos">
+        <h2>{{objWeather.name}}</h2>
+        <div class="weather">
+          <div class="weatherContent">
+            <span><img [src]="objWeather?.weather[0]?.iconURL" alt="" /></span>
+            <h1>{{objWeather.main.temp}} ºC</h1>
+          </div>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+          <h1>Nublado</h1>
+        </div>
+      </div>
+      <div class="prev">
+        <span>
+          <span><img [src]="objWeather?.weather[0]?.iconURL" alt="" /></span>
+        </span>
+        <h1>
+          {{objWeather.main.temp_min}} ºC / {{objWeather.main.temp_max}} ºC
+        </h1>
+      </div>
+      <div class="items">
+        <h3>80</h3>
+        <h3>{{objWeather.wind.speed}} Km/h</h3>
+        <h3> <p class="material-symbols-outlined">humidity_mid</p>{{objWeather.main.humidity}} %</h3>
+      </div>
+    </div>
+  </ion-card>
 </ion-content>
