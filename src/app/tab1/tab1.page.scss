@@ -1,6 +1,7 @@
 $font-size-base1: 50px;
 $font-size-base2: 35px;
 $font-size-base3: 25px;
+$color-base: #ffff;
 
 .container {
   position: absolute;
@@ -27,9 +28,10 @@ $font-size-base3: 25px;
 
 .header {
   width: 100%;
+  color: $color-base;
 }
-.header p{
-font-size: $font-size-base3;
+.header p {
+  font-size: $font-size-base3;
 }
 
 .imgTemp img {
@@ -37,6 +39,7 @@ font-size: $font-size-base3;
 }
 .weatherContent h1 {
   font-size: $font-size-base1;
+  color: $color-base;
 }
 
 .weatherContent {
@@ -60,9 +63,11 @@ font-size: $font-size-base3;
 }
 .infos h2 {
   font-size: $font-size-base1;
+  color: $color-base;
 }
 .infos h1 {
   font-size: $font-size-base2;
+  color: $color-base;
 }
 
 .weather {
@@ -81,6 +86,7 @@ font-size: $font-size-base3;
 }
 .prev h1 {
   font-size: $font-size-base2;
+  color: $color-base;
 }
 
 .items {
@@ -97,4 +103,12 @@ font-size: $font-size-base3;
 }
 .items h3 {
   font-size: $font-size-base3;
+  color: $color-base;
+}
+
+.humidity{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
 }

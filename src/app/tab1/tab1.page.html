@@ -21,7 +21,7 @@
       </div>
       <div class="prev">
         <span>
-          <span><img [src]="objWeather?.weather[0]?.iconURL" alt="" /></span>
+          <span class="imgTemp"><img [src]="objWeather?.weather[0]?.iconURL" alt="" /></span>
         </span>
         <h1>
           {{objWeather.main.temp_min}} ºC / {{objWeather.main.temp_max}} ºC
@@ -29,7 +29,7 @@
       </div>
       <div class="items">
         <h3>{{objWeather.wind.speed}} Km/h</h3>
-        <h3> <p class="material-symbols-outlined">humidity_mid</p>{{objWeather.main.humidity}} %</h3>
+        <h3 class="humidity"> <p class="material-symbols-outlined">humidity_mid</p>{{objWeather.main.humidity}} %</h3>
       </div>
     </div>
   </ion-card>

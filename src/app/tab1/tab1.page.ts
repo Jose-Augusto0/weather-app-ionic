@@ -17,7 +17,7 @@ export class Tab1Page implements OnInit {
 
   ngOnInit(): void {
     this.service
-      .getWeather('Recife')
+      .getWeather('São paulo')
       .pipe(
         map((el) => {
           el.main.temp = el.main.temp.toFixed(0);
