@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServicesService } from '../services/services.service';
-import { map } from 'rxjs';
+import { debounce, debounceTime, map, switchMap } from 'rxjs';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-tab1',
@@ -10,9 +11,13 @@ import { map } from 'rxjs';
 export class Tab1Page implements OnInit {
   objWeather!: any;
   currentHour!: Date;
+  searchBar!: FormGroup;
 
-  constructor(private service: ServicesService) {
+  constructor(private service: ServicesService, private fb: FormBuilder) {
     this.getCurrentHour();
+    this.searchBar = this.fb.group({
+      inputSearch: [''],
+    });
   }
 
   ngOnInit(): void {
@@ -24,7 +29,9 @@ export class Tab1Page implements OnInit {
           el.main.temp_min = el.main.temp_min.toFixed(0);
           el.main.temp_max = el.main.temp_max.toFixed(0);
           el.weather[0].iconURL = `http://openweathermap.org/img/wn/${el.weather[0].icon}.png`;
-          el.weather[0].description = this.transformDescription(el.weather[0].description);
+          el.weather[0].description = this.transformDescription(
+            el.weather[0].description
+          );
           return el;
         })
       )
@@ -37,6 +44,24 @@ export class Tab1Page implements OnInit {
     );
   }
 
+  searchCity(): void {
+    const searchValue = this.searchBar.get('inputSearch')?.value;
+    this.service
+      .getWeather(searchValue)
+      .pipe(
+        map((el) => {
+          el.main.temp = el.main.temp.toFixed(0);
+          el.main.temp_min = el.main.temp_min.toFixed(0);
+          el.main.temp_max = el.main.temp_max.toFixed(0);
+          el.weather[0].iconURL = `http://openweathermap.org/img/wn/${el.weather[0].icon}.png`;
+          el.weather[0].description = this.transformDescription(
+            el.weather[0].description
+          );
+          return el;
+        })
+      )
+      .subscribe((resp) => (this.objWeather = resp));
+  }
   getCurrentHour() {
     setInterval(() => {
       this.currentHour = new Date();

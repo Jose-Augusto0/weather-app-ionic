@@ -6,14 +6,24 @@
     </div>
 
     <div class="containerWeather" *ngIf="objWeather">
-      <div class="test">
+      <form action="" [formGroup]="searchBar">
+        <ion-searchbar
+          animated="true"
+          color="medium"
+          placeholder="Digite o nome da cidade"
+          formControlName="inputSearch"
+          (keydown.enter)="searchCity()"
+        ></ion-searchbar>
+      </form>
 
-      </div>
+      <div class="test"></div>
       <div class="infos">
         <h2>{{objWeather.name}}</h2>
         <div class="weather">
           <div class="weatherContent">
-            <span class="imgTemp"><img [src]="objWeather?.weather[0]?.iconURL" alt="" /></span>
+            <span class="imgTemp"
+              ><img [src]="objWeather?.weather[0]?.iconURL" alt=""
+            /></span>
             <h1>{{objWeather.main.temp}} ºC</h1>
           </div>
           <h1>{{objWeather.weather[0]?.description}}</h1>
@@ -21,7 +31,9 @@
       </div>
       <div class="prev">
         <span>
-          <span class="imgTemp"><img [src]="objWeather?.weather[0]?.iconURL" alt="" /></span>
+          <span class="imgTemp"
+            ><img [src]="objWeather?.weather[0]?.iconURL" alt=""
+          /></span>
         </span>
         <h1>
           {{objWeather.main.temp_min}} ºC / {{objWeather.main.temp_max}} ºC
@@ -29,7 +41,10 @@
       </div>
       <div class="items">
         <h3>{{objWeather.wind.speed}} Km/h</h3>
-        <h3 class="humidity"> <p class="material-symbols-outlined">humidity_mid</p>{{objWeather.main.humidity}} %</h3>
+        <h3 class="humidity">
+          <p class="material-symbols-outlined">humidity_mid</p>
+          {{objWeather.main.humidity}} %
+        </h3>
       </div>
     </div>
   </ion-card>
