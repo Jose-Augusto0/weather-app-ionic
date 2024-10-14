@@ -1,20 +1,22 @@
 <ion-content class="container">
   <ion-card class="contentCard">
     <div class="header">
-      <h4>Current weather</h4>
+      <h4>Clima atual</h4>
       <p>{{ currentHour | date:'HH:mm'}}</p>
     </div>
 
-    <div class="containeWeather" *ngIf="objWeather">
+    <div class="containerWeather" *ngIf="objWeather">
+      <div class="test">
+
+      </div>
       <div class="infos">
         <h2>{{objWeather.name}}</h2>
         <div class="weather">
           <div class="weatherContent">
-            <span><img [src]="objWeather?.weather[0]?.iconURL" alt="" /></span>
+            <span class="imgTemp"><img [src]="objWeather?.weather[0]?.iconURL" alt="" /></span>
             <h1>{{objWeather.main.temp}} ºC</h1>
           </div>
-
-          <h1>Nublado</h1>
+          <h1>{{objWeather.weather[0]?.description}}</h1>
         </div>
       </div>
       <div class="prev">
@@ -26,7 +28,6 @@
         </h1>
       </div>
       <div class="items">
-        <h3>80</h3>
         <h3>{{objWeather.wind.speed}} Km/h</h3>
         <h3> <p class="material-symbols-outlined">humidity_mid</p>{{objWeather.main.humidity}} %</h3>
       </div>
